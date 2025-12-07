@@ -1,0 +1,358 @@
+:root {
+    --bg: #0b0b10;
+    --bg-alt: #15151e;
+    --card: #1f1f2a;
+    --accent: #f5b544;
+    --accent-soft: rgba(245, 181, 68, 0.12);
+    --text: #f8f8ff;
+    --muted: #b4b7c8;
+    --border: #2a2a38;
+    --max-width: 1100px;
+    --radius-lg: 18px;
+    --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top, #2a2438 0, #050509 55%, #020206 100%);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* Layout helpers */
+
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+.section {
+    padding: 4rem 0;
+}
+
+.section-alt {
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.section h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+}
+
+.section p {
+    margin: 0 0 1rem;
+}
+
+.section-grid {
+    display: grid;
+    gap: 2.5rem;
+}
+
+@media (min-width: 800px) {
+    .section-grid {
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+        align-items: start;
+    }
+}
+
+/* Header */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(16px);
+    background: linear-gradient(to bottom, rgba(3,3,8,0.95), rgba(3,3,8,0.8), transparent);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-weight: 650;
+    letter-spacing: 0.03em;
+    font-size: 1.1rem;
+}
+
+.logo-mark {
+    font-size: 1.3rem;
+}
+
+.logo-text {
+    text-transform: uppercase;
+}
+
+.main-nav {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.95rem;
+}
+
+.main-nav a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.main-nav a:hover {
+    background: rgba(255,255,255,0.06);
+    color: var(--text);
+}
+
+@media (max-width: 750px) {
+    .main-nav {
+        display: none;
+    }
+}
+
+/* Hero */
+
+.hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    color: var(--text);
+    background:
+        linear-gradient(to bottom, rgba(5, 5, 10, 0.95), rgba(5,5,10,0.98)),
+        url("images/hero.jpg") center/cover no-repeat;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(245,181,68,0.45), transparent 55%);
+    mix-blend-mode: soft-light;
+}
+
+.hero-content {
+    position: relative;
+    padding: 4.5rem 0 3.5rem;
+    max-width: 640px;
+}
+
+.hero h1 {
+    font-size: clamp(2.1rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 1.4rem;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.hero-note {
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, #f5b544, #f28f3b);
+    color: #1b1205;
+    font-weight: 600;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.6);
+}
+
+.btn.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.75);
+}
+
+.btn.secondary {
+    background: rgba(8,8,15,0.9);
+    color: var(--text);
+    border-color: rgba(255,255,255,0.25);
+}
+
+.btn.secondary:hover {
+    background: rgba(18,18,30,0.95);
+}
+
+/* Photo cards */
+
+.photo-grid {
+    display: grid;
+    gap: 1.4rem;
+}
+
+.photo-card {
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+}
+
+.photo-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.photo-card figcaption {
+    padding: 0.8rem 1rem 0.9rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+/* Steps / How it works */
+
+.steps {
+    display: grid;
+    gap: 1.4rem;
+    margin-top: 1.5rem;
+}
+
+@media (min-width: 800px) {
+    .steps {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+.step {
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.38);
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    border: 1px solid rgba(245,181,68,0.3);
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+/* Groups list */
+
+.groups-list {
+    display: grid;
+    gap: 1.4rem;
+    margin: 1.5rem 0 0.5rem;
+}
+
+.group-card {
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: 1.2rem 1.3rem;
+    border: 1px dashed rgba(244,244,255,0.25);
+}
+
+/* FAQ */
+
+.faq-list {
+    margin-top: 1.4rem;
+}
+
+.faq-list details {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--border);
+    margin-bottom: 0.6rem;
+}
+
+.faq-list summary {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.faq-list summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-list summary::after {
+    content: "▾";
+    float: right;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+.faq-list details[open] summary::after {
+    content: "▴";
+}
+
+/* Footer */
+
+.site-footer {
+    border-top: 1px solid var(--border);
+    background: #050509;
+    padding: 1.8rem 0 2.2rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.footer-inner {
+    text-align: center;
+}
+
+.small-text {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+/* Utility */
+
+a {
+    color: var(--accent);
+}
+
+a:hover {
+    text-decoration: underline;
+}
